@@ -1,4 +1,6 @@
 export type MarketIntelOutput = {
+  asset: string;
+  timeframe: string;
   coreThesis: string;
   bullishScenario: string;
   bearishScenario: string;
@@ -7,15 +9,29 @@ export type MarketIntelOutput = {
   confidenceScore: number;
   hiddenRisk: string;
   nextDataNeeded: string[];
+  decisionBoundary: string;
+  forbiddenDecisionTermsDetected: string[];
 };
 
 export type BugBountyOutput = {
+  programName: string;
   scopeMap: { in: string[]; out: string[] };
-  assetInventory: { name: string; type: string; priority: string }[];
+  allowedAssets: { name: string; type: string; priority: string }[];
+  forbiddenAssets: string[];
   vulnHypotheses: { title: string; rationale: string; severity: string }[];
   safeChecklist: string[];
   evidenceTemplate: string;
-  reportDraft: string;
+  draftReport: string;
+  outOfScopeWarnings: string[];
+  decisionBoundary: string;
+  unsafeTermsDetected: string[];
+};
+
+export type QualityResult = {
+  passed: boolean;
+  warnings: string[];
+  blockedTerms: string[];
+  revisionRequired: boolean;
 };
 
 export type View = 'home' | 'market' | 'bounty';

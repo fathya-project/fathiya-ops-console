@@ -1,4 +1,4 @@
-import { LineChart, Bug, ArrowLeft, Activity, Lock } from 'lucide-react';
+import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical } from 'lucide-react';
 import type { View } from '../types';
 import { SystemStatus } from '../components/SystemStatus';
 import { RedZone } from '../components/RedZone';
@@ -22,7 +22,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
           </div>
           <div className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.3em] text-gold-300/80 border border-gold-600/30 rounded-full px-4 py-1 mb-6 bg-gold-600/5">
             <span className="w-1.5 h-1.5 rounded-full bg-gold-400 pulse-dot" />
-            SOVEREIGN OPS CONSOLE · v1.0
+            SOVEREIGN OPS CONSOLE · INTELLIGENCE ENGINE v0
           </div>
           <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text tracking-tight leading-tight mb-2">
             المنشأة السيادية الذكية
@@ -71,6 +71,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
         </div>
 
         <div className="mt-14 space-y-6">
+          <TestModePanel onNavigate={onNavigate} />
           <SystemStatus />
           <RedZone />
           <ActivityLog />
@@ -139,6 +140,46 @@ function ModuleCard({
         </div>
       </div>
     </button>
+  );
+}
+
+function TestModePanel({ onNavigate }: { onNavigate: (v: View) => void }) {
+  return (
+    <section className="rounded-2xl border border-amber-500/20 bg-amber-500/5 overflow-hidden">
+      <div className="flex items-center gap-2.5 px-6 py-4 border-b border-amber-500/20">
+        <div className="w-8 h-8 rounded-md bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
+          <FlaskConical size={15} className="text-amber-400" />
+        </div>
+        <div>
+          <h2 className="text-sm font-semibold text-stone-100">وضع الاختبار المحلي</h2>
+          <div className="font-mono text-[10px] text-amber-400/80 tracking-wider">TEST MODE · SAFE SAMPLE DATA</div>
+        </div>
+      </div>
+      <div className="px-6 py-5">
+        <p className="text-xs text-stone-400 leading-6 mb-4">
+          يُولّد بيانات اختبار آمنة ويُشغّل المحرك المحلي مباشرةً. لا إجراءات خارجية — للتحقق من سلوك المحرك فقط.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => onNavigate('market')}
+            className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-200 hover:bg-amber-500/15 hover:border-amber-400/50 transition"
+          >
+            <LineChart size={15} />
+            Generate Market Intel Sample
+          </button>
+          <button
+            onClick={() => onNavigate('bounty')}
+            className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2.5 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-200 hover:bg-amber-500/15 hover:border-amber-400/50 transition"
+          >
+            <Bug size={15} />
+            Generate Bug Bounty Sample
+          </button>
+        </div>
+        <p className="text-[11px] text-stone-500 mt-3">
+          بعد الانتقال للوحدة، اضغط زر النموذج التجريبي لتشغيل المحرك فوراً.
+        </p>
+      </div>
+    </section>
   );
 }
 
