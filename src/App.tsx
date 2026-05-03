@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ControlBanner } from './components/ControlBanner';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
@@ -6,9 +6,12 @@ import { MarketIntel } from './pages/MarketIntel';
 import { BugBounty } from './pages/BugBounty';
 import { ApprovalQueue } from './pages/ApprovalQueue';
 import { N8nBlueprint } from './pages/N8nBlueprint';
+import { Login } from './pages/Login';
 import { ActivityContext, LogEntry } from './lib/activity';
 import { BridgeContext, loadPayloads, savePayloads } from './lib/bridge';
 import { AuditContext, loadAuditEntries, saveAuditEntries } from './lib/audit';
+import { supabase } from './lib/supabase';
+import type { Session } from '@supabase/supabase-js';
 import type { FathiyaBridgePayload } from './types';
 import type { AuditLogEntry } from './types';
 import type { View } from './types';
@@ -27,7 +30,27 @@ function saveActivity(entries: LogEntry[]) {
 }
 
 function App() {
+  const [session, setSession] = useState<Session | null | undefined>(undefined);
   const [view, setView] = useState<View>('home');
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSession(data.session));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+      setSession(s);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Loading state while session resolves
+  if (session === undefined) {
+    return (
+      <div className="min-h-screen bg-ink-950 flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full border-2 border-gold-400 border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  if (!session) return <Login />;
 
   // Activity log
   const [entries, setEntries] = useState<LogEntry[]>(loadActivity);
