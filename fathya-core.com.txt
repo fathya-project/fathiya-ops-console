@@ -1,0 +1,69 @@
+; Domain: fathya-core.com
+; Exported (y-m-d hh:mm:ss): 2026-05-03 02:34:55
+;
+; This file is intended for use for informational and archival
+; purposes ONLY and MUST be edited before use on a production
+; DNS server.
+;
+; In particular, you must update the SOA record with the correct
+; authoritative name server and contact e-mail address information,
+; and add the correct NS records for the name servers which will
+; be authoritative for this domain.
+;
+; For further information, please consult the BIND documentation
+; located on the following website:
+;
+; http://www.isc.org/
+;
+; And RFC 1035:
+;
+; http://www.ietf.org/rfc/rfc1035.txt
+;
+; Please note that we do NOT offer technical support for any use
+; of this zone data, the BIND name server, or any other third-
+; party DNS software.
+;
+; Use at your own risk.
+
+
+$ORIGIN fathya-core.com.
+
+; SOA Record
+@	3600	 IN 	SOA	ns27.domaincontrol.com.	dns.jomax.net. (
+					2026050101
+					28800
+					7200
+					604800
+					3600
+					) 
+
+; A Record
+@	1800	 IN 	A	75.2.60.5
+
+; TXT Record
+@	3600	 IN 	TXT	"google-site-verification=fXSWCQnH-zOz9CwezIiYoSir4P8h6TrzlU7a267PL2I"
+@	1800	 IN 	TXT	"google-site-verification=oXezu5A6thItZQi1mf4GtFjgeHoerVeeKlf0FefIrX0"
+@	3600	 IN 	TXT	"NETORGFT20664989.onmicrosoft.com"
+@	3600	 IN 	TXT	"v=spf1 include:secureserver.net -all"
+google._domainkey	3600	 IN 	TXT	"v=DKIM1;k=rsa;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu6BECv2oVcyzLS88SfthHU9DFC9jEUX6fGD4rA0/375TtCg0qBRk9FaFk1PKMYAezmf/h27na134ATed3d19iQ69hFaifo7xpMzfJMFMt+caKJUVc6z+2RSPlJTAXQPwHqR15dctWlY18MgPxW/SvJK2KHPhHg/pRMKqcONQ7sEW0BS2BrkUP43hep/DNhFowHY"	"EB4morc024+tudw6P+WK2pSJr4SySvITtyWG3gOTCdrSRxmn+kHmQICBVJ6ePfPKixNCoM2GBhZAdSTluPkOL6hTW9fjw3mLhOkjlHR6UhAbPDSrpg4wuPwrt63sSC2tBErwWXAfPcCOOOF2aFQIDAQAB"
+
+; CNAME Record
+autodiscover	3600	 IN 	CNAME	autodiscover.outlook.com.
+email	3600	 IN 	CNAME	email.secureserver.net.
+lyncdiscover	3600	 IN 	CNAME	webdir.online.lync.com.
+msoid	3600	 IN 	CNAME	clientconfig.microsoftonline-p.net.
+sip	3600	 IN 	CNAME	sipdir.online.lync.com.
+www	1800	 IN 	CNAME	site-dns.bolt.host.
+_domainconnect	3600	 IN 	CNAME	_domainconnect.gd.domaincontrol.com.
+
+; SRV Record
+_sip._tls.@	3600	 IN 	SRV	100	1	443	sipdir.online.lync.com.
+_sipfederationtls._tcp.@	3600	 IN 	SRV	100	1	5061	sipfed.online.lync.com.
+
+; NS Record
+@	3600	 IN 	NS	ns27.domaincontrol.com.
+@	3600	 IN 	NS	ns28.domaincontrol.com.
+
+; MX Record
+@	3600	 IN 	MX	1	smtp.google.com.
+
