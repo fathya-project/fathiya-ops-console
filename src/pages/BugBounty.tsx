@@ -67,10 +67,12 @@ export function BugBounty({ onNavigate }: { onNavigate: (v: View) => void }) {
     }
 
     try {
+      const { data: { user } } = await supabase.auth.getUser();
       await supabase.from('bug_bounty_reports').insert({
         program_name: params.programName, policy_url: params.policyUrl,
         allowed_scope: params.allowedScope, forbidden_scope: params.forbiddenScope,
         assets: params.assets, notes: params.notes, output,
+        user_id: user?.id ?? null,
       });
       setSaved(true);
     } catch { /* local-only fallback */ }

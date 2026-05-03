@@ -74,11 +74,13 @@ export function MarketIntel({ onNavigate }: { onNavigate: (v: View) => void }) {
     }
 
     try {
+      const { data: { user } } = await supabase.auth.getUser();
       await supabase.from('market_intel_reports').insert({
         asset: params.asset, timeframe: params.timeframe,
         data_source: params.dataSource, risk_level: params.riskLevel,
         notes: [params.marketContext ? `سياق السوق: ${params.marketContext}` : '', params.notes].filter(Boolean).join('\n\n'),
         output,
+        user_id: user?.id ?? null,
       });
       setSaved(true);
     } catch { /* local-only fallback */ }
