@@ -88,4 +88,4 @@ export type AuditLogEntry = {
   summary: string;
 };
 
-export type View = 'home' | 'market' | 'bounty' | 'approval' | 'n8n';
+export type View = 'home' | 'command-center' | 'market' | 'bounty' | 'approval' | 'n8n';

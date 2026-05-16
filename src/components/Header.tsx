@@ -1,4 +1,4 @@
-import { ChevronLeft, ListChecks, Workflow } from 'lucide-react';
+import { ChevronLeft, ListChecks, Package, Workflow } from 'lucide-react';
 import type { View } from '../types';
 import { Logo } from './Logo';
 
@@ -38,6 +38,19 @@ export function Header({
             <span className="md:hidden">DRAFT</span>
           </div>
           <span className="sm:hidden w-2 h-2 bg-gold-400 rounded-full pulse-dot" />
+
+          {/* Command Center nav */}
+          <button
+            onClick={() => onNavigate('command-center')}
+            className={`hidden sm:flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-md border transition ${
+              view === 'command-center'
+                ? 'border-gold-500/50 text-gold-200 bg-gold-600/10'
+                : 'border-gold-700/30 text-gold-300/70 hover:border-gold-500/50 hover:text-gold-200'
+            }`}
+          >
+            <Package size={13} />
+            <span className="hidden md:inline">Command Center</span>
+          </button>
 
           {/* n8n Blueprint nav */}
           <button

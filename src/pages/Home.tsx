@@ -1,4 +1,4 @@
-import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Workflow } from 'lucide-react';
+import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Package, Workflow } from 'lucide-react';
 import type { View } from '../types';
 import { SystemStatus } from '../components/SystemStatus';
 import { RedZone } from '../components/RedZone';
@@ -36,6 +36,19 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
+          <ModuleCard
+            tag="COMMAND · 00"
+            title="Command Center"
+            subtitle="Core Artifact Integration Scaffold"
+            description="واجهة اتجاه الدمج بين Core و Ops Console — تعرض المستودعات الصحيحة، الأقسام المنتظرة من Core، وحدود عدم التنفيذ."
+            icon={Package}
+            stats={[
+              { label: 'Core Source', value: 'fathiya-core' },
+              { label: 'الحالة', value: 'Scaffold' },
+              { label: 'التنفيذ', value: 'معطّل' },
+            ]}
+            onClick={() => onNavigate('command-center')}
+          />
           <ModuleCard
             tag="MODULE · 01"
             title="استخبارات السوق"

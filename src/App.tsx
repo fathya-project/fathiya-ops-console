@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ControlBanner } from './components/ControlBanner';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
+import { CommandCenter } from './pages/CommandCenter';
 import { MarketIntel } from './pages/MarketIntel';
 import { BugBounty } from './pages/BugBounty';
 import { ApprovalQueue } from './pages/ApprovalQueue';
@@ -116,6 +117,7 @@ function AppShell({ session }: { session: Session }) {
             <ControlBanner />
             <Header view={view} onNavigate={setView} payloadCount={payloads.filter(p => p.execution_status === 'pending_approval').length} />
             {view === 'home' && <Home onNavigate={setView} />}
+            {view === 'command-center' && <CommandCenter onNavigate={setView} />}
             {view === 'market' && <MarketIntel onNavigate={setView} />}
             {view === 'bounty' && <BugBounty onNavigate={setView} />}
             {view === 'approval' && <ApprovalQueue onNavigate={setView} />}
