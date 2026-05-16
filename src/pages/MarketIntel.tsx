@@ -182,7 +182,6 @@ export function MarketIntel({ onNavigate }: { onNavigate: (v: View) => void }) {
               output={result.output}
               quality={result.quality}
               params={{ asset, timeframe, marketContext, dataSource, riskLevel, notes }}
-              logId={logId}
               onExported={() => logId && markExported(logId)}
             />
           )}
@@ -377,12 +376,11 @@ function downloadMd(filename: string, content: string) {
 }
 
 function OutputPanel({
-  output, quality, params, logId, onExported,
+  output, quality, params, onExported,
 }: {
   output: MarketIntelOutput;
   quality: QualityResult;
   params: { asset: string; timeframe: string; marketContext: string; dataSource: string; riskLevel: string; notes: string };
-  logId: string | null;
   onExported: () => void;
 }) {
   const { addAuditEntry } = useAudit();

@@ -182,7 +182,6 @@ export function BugBounty({ onNavigate }: { onNavigate: (v: View) => void }) {
             <OutputPanel
               output={result.output}
               quality={result.quality}
-              logId={logId}
               onExported={() => logId && markExported(logId)}
             />
           )}
@@ -338,11 +337,10 @@ function downloadMd(filename: string, content: string) {
 }
 
 function OutputPanel({
-  output, quality, logId, onExported,
+  output, quality, onExported,
 }: {
   output: BugBountyOutput;
   quality: QualityResult;
-  logId: string | null;
   onExported: () => void;
 }) {
   const { addAuditEntry } = useAudit();
