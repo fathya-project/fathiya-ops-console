@@ -139,8 +139,11 @@ function AppShell({ session }: { session?: Session | null }) {
 
 function App() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
-  const publicCommandCenter = typeof window !== 'undefined'
-    && window.location.pathname.replace(/\/+$/, '') === '/command-center';
+  const normalizedPath = typeof window !== 'undefined'
+    ? window.location.pathname.replace(/\/+$/, '')
+    : '';
+  const publicCommandCenter = normalizedPath === '/command-center'
+    || normalizedPath.endsWith('/command-center');
 
   useEffect(() => {
     if (publicCommandCenter || !hasSupabaseConfig) {

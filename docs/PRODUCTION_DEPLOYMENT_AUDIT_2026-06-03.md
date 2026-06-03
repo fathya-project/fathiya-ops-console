@@ -51,6 +51,13 @@ Choose one of these deployment paths:
 3. Connect the live Netlify site directly to this GitHub repository and enable
    automatic deploys from `main`.
 
+## Temporary Public Preview
+
+If the production Bolt/Netlify deployment remains locked, publish a temporary
+GitHub Pages preview from a `gh-pages` branch. This does not replace
+`fathya-core.com`, but it provides a public proof that the command center build
+works while the production deploy account is being unlocked.
+
 ## Expected Production Verification
 
 After deployment, these checks should pass:
