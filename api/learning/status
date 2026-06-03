@@ -1,0 +1,20 @@
+{
+  "status": "learning_foundation_active",
+  "site": "fathya-core.com",
+  "version": "ops-console-agentic-v0.2",
+  "updated_at": "2026-06-03",
+  "execution_mode": "draft_only",
+  "learning_mode": "understanding_over_memorization",
+  "active_agents": [
+    "crypto-intelligence",
+    "security-lab",
+    "research-synthesis",
+    "code-ops"
+  ],
+  "understanding_checks": {
+    "teach_back": "passed",
+    "contradiction_test": "passed",
+    "action_boundary": "guarded",
+    "tool_selection": "passed"
+  }
+}
