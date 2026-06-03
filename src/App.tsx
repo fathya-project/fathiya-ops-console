@@ -10,7 +10,7 @@ import { Login } from './pages/Login';
 import { ActivityContext, LogEntry } from './lib/activity';
 import { BridgeContext, loadPayloads, savePayloads } from './lib/bridge';
 import { AuditContext, loadAuditEntries, saveAuditEntries } from './lib/audit';
-import { supabase } from './lib/supabase';
+import { hasSupabaseConfig, supabase } from './lib/supabase';
 import type { Session } from '@supabase/supabase-js';
 import type { FathiyaBridgePayload } from './types';
 import type { AuditLogEntry } from './types';
@@ -29,7 +29,7 @@ function saveActivity(entries: LogEntry[]) {
   try { localStorage.setItem(ACT_LS_KEY, JSON.stringify(entries)); } catch { /* ignore */ }
 }
 
-function AppShell({ session }: { session: Session }) {
+function AppShell({ session }: { session?: Session | null }) {
   const [view, setView] = useState<View>('home');
 
   const [entries, setEntries] = useState<LogEntry[]>(loadActivity);
@@ -139,14 +139,21 @@ function AppShell({ session }: { session: Session }) {
 
 function App() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
+  const publicCommandCenter = typeof window !== 'undefined'
+    && window.location.pathname.replace(/\/+$/, '') === '/command-center';
 
   useEffect(() => {
+    if (publicCommandCenter || !hasSupabaseConfig) {
+      setSession(null);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
       setSession(s);
     });
     return () => subscription.unsubscribe();
-  }, []);
+  }, [publicCommandCenter]);
 
   if (session === undefined) {
     return (
@@ -155,6 +162,8 @@ function App() {
       </div>
     );
   }
+
+  if (!session && publicCommandCenter) return <AppShell session={null} />;
 
   if (!session) return <Login />;
 

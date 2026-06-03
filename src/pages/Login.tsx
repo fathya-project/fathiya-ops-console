@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Lock, Loader2, AlertCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { hasSupabaseConfig, supabase } from '../lib/supabase';
 import { Logo } from '../components/Logo';
+import { PublicLearningBadge } from '../components/AgenticLearningPanel';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,11 @@ export function Login() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!hasSupabaseConfig) {
+      setError('بيئة تسجيل الدخول غير مربوطة حالياً. افتح /command-center لوضع التشغيل الآمن.');
+      return;
+    }
+
     setLoading(true);
     setError('');
     const { error: err } = await supabase.auth.signInWithPassword({ email, password });
@@ -99,6 +105,7 @@ export function Login() {
         <p className="text-center text-[11px] text-stone-600 mt-6">
           فتحية لا تنفذ قرارات. فتحية توسّع الوعي وتنتج مسودات قابلة للمراجعة.
         </p>
+        <PublicLearningBadge />
       </div>
     </div>
   );

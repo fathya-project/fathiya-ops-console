@@ -4,6 +4,7 @@ import { SystemStatus } from '../components/SystemStatus';
 import { RedZone } from '../components/RedZone';
 import { ActivityLog } from '../components/ActivityLog';
 import { Logo } from '../components/Logo';
+import { AgenticLearningPanel } from '../components/AgenticLearningPanel';
 
 export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
   return (
@@ -98,6 +99,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
 
         <div className="mt-14 space-y-6">
           <TestModePanel onNavigate={onNavigate} />
+          <AgenticLearningPanel />
           <SystemStatus />
           <RedZone />
           <ActivityLog />
