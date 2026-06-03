@@ -27,6 +27,12 @@ domain is still serving the older Bolt/Netlify build.
   - repository webhooks: `0`
   - repository deployments: `0`
   - Netlify deployment through Zapier cannot proceed until Netlify OAuth is connected
+- GitHub Actions status:
+  - workflow `FATHIYA Command Center CI` was installed
+  - first run failed before checkout/build because GitHub reported:
+    `The job was not started because your account is locked due to a billing issue.`
+  - the workflow is now manual-only (`workflow_dispatch`) to avoid repeated
+    failed runs until the billing lock is resolved
 
 ## Interpretation
 
@@ -60,6 +66,14 @@ GET https://fathya-core.com/api/learning/status
   status: learning_foundation_active
 ```
 
-The CI workflow now builds the project and uploads the `dist` artifact on every
-push to `main`, so the current deployable bundle can be recovered from GitHub
-Actions even before the Netlify/Bolt connection is fixed.
+The CI workflow can build the project and upload the `dist` artifact after the
+GitHub billing lock is resolved. Until then, build locally with:
+
+```text
+npm ci
+npm run typecheck
+npm run lint
+npm run build
+```
+
+Then deploy the generated `dist` folder through Bolt or Netlify.

@@ -1,9 +1,6 @@
 name: FATHIYA Command Center CI
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
