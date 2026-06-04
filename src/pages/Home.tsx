@@ -1,4 +1,4 @@
-import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Workflow } from 'lucide-react';
+import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Workflow, Bot } from 'lucide-react';
 import type { View } from '../types';
 import { SystemStatus } from '../components/SystemStatus';
 import { RedZone } from '../components/RedZone';
@@ -32,7 +32,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
             SOVEREIGN INTELLIGENCE LAB
           </div>
           <p className="text-stone-400 max-w-2xl mx-auto leading-relaxed">
-            منصة تحليل وصياغة مسودات عمليات. لا تنفيذ فعلي — فقط قراءة، تحليل، وصياغة بانتظار التأكيد البشري.
+            بوابة تشغيل للمحرك المحلي: تفهم المعرفة، تخطط، تنفّذ العمل الداخلي، وتصدر إيصالات قابلة للمراجعة.
           </p>
         </div>
 
@@ -64,6 +64,19 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
             onClick={() => onNavigate('bounty')}
           />
           <ModuleCard
+            tag="RUNTIME · 01"
+            title="مهام الوكلاء"
+            subtitle="Local Agent Runtime"
+            description="إرسال المهام للمشغّل المحلي، متابعة heartbeat والخطوات، اعتماد الإجراءات الحساسة، وعرض إيصالات التنفيذ."
+            icon={Bot}
+            stats={[
+              { label: 'Heartbeat', value: 'مباشر' },
+              { label: 'Receipts', value: 'مفعّلة' },
+              { label: 'الحساس', value: 'موافقة' },
+            ]}
+            onClick={() => onNavigate('agents')}
+          />
+          <ModuleCard
             tag="BRIDGE · 01"
             title="طابور الموافقة"
             subtitle="Approval Queue"
@@ -92,9 +105,9 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
         </div>
 
         <div className="mt-12 grid sm:grid-cols-3 gap-4">
-          <FooterChip icon={Activity} label="قراءة فقط" sub="لا إجراءات خارجية" />
-          <FooterChip icon={Lock} label="مسودات محفوظة" sub="قاعدة بيانات مؤمّنة" />
-          <FooterChip icon={ArrowLeft} label="تأكيد بشري" sub="شرط مسبق للتنفيذ" />
+          <FooterChip icon={Activity} label="تنفيذ داخلي" sub="عبر المشغّل المحلي" />
+          <FooterChip icon={Lock} label="إيصالات محفوظة" sub="قاعدة بيانات مؤمّنة" />
+          <FooterChip icon={ArrowLeft} label="تأكيد بشري" sub="للإجراءات الحساسة" />
         </div>
 
         <div className="mt-14 space-y-6">

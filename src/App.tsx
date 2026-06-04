@@ -6,6 +6,7 @@ import { MarketIntel } from './pages/MarketIntel';
 import { BugBounty } from './pages/BugBounty';
 import { ApprovalQueue } from './pages/ApprovalQueue';
 import { N8nBlueprint } from './pages/N8nBlueprint';
+import { AgentTasks } from './pages/AgentTasks';
 import { Login } from './pages/Login';
 import { ActivityContext, LogEntry } from './lib/activity';
 import { BridgeContext, loadPayloads, savePayloads } from './lib/bridge';
@@ -120,13 +121,14 @@ function AppShell({ session }: { session?: Session | null }) {
             {view === 'bounty' && <BugBounty onNavigate={setView} />}
             {view === 'approval' && <ApprovalQueue onNavigate={setView} />}
             {view === 'n8n' && <N8nBlueprint onNavigate={setView} />}
+            {view === 'agents' && <AgentTasks session={session} onNavigate={setView} />}
             <footer className="mt-16 border-t border-gold-700/20">
               <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="font-mono text-xs tracking-wider text-gold-600/70">
                   SOVEREIGN INTELLIGENCE LAB · BRIDGE LAYER v0
                 </div>
                 <div className="text-xs text-stone-400 italic text-left sm:text-right">
-                  فتحية لا تنفذ قرارات. فتحية توسّع الوعي وتنتج مسودات قابلة للمراجعة.
+                  فتحية تنفّذ العمل الداخلي المملوك، وتنتظر الموافقة قبل الإجراءات الحساسة.
                 </div>
               </div>
             </footer>
