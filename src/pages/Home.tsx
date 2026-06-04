@@ -1,4 +1,4 @@
-import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Workflow } from 'lucide-react';
+import { LineChart, Bug, ArrowLeft, Activity, Lock, FlaskConical, ListChecks, Workflow, Bot } from 'lucide-react';
 import type { View } from '../types';
 import { SystemStatus } from '../components/SystemStatus';
 import { RedZone } from '../components/RedZone';
@@ -32,7 +32,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
             SOVEREIGN INTELLIGENCE LAB
           </div>
           <p className="text-stone-400 max-w-2xl mx-auto leading-relaxed">
-            منصة تحليل وصياغة مسودات عمليات. لا تنفيذ فعلي — فقط قراءة، تحليل، وصياغة بانتظار التأكيد البشري.
+            بوابة تشغيل للمحرك المحلي: تفهم المعرفة، تخطط، تنفّذ العمل الداخلي، وتصدر إيصالات قابلة للمراجعة.
           </p>
         </div>
 
@@ -41,60 +41,78 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
             tag="MODULE · 01"
             title="استخبارات السوق"
             subtitle="Market Intel Engine v0"
-            description="محرك فرضيات محلي — سيناريوهات، شروط إبطال، إشارات مراقبة، حدود حكم. Quality Gate مدمج. مسودة فقط."
+            description="محرك استخبارات محلي يبني السيناريوهات وشروط الإبطال وإشارات المراقبة، ثم يمرر العمل القابل للتنفيذ إلى الوكلاء."
             icon={LineChart}
             stats={[
               { label: 'Quality Gate', value: 'مفعّل' },
               { label: 'Bridge Payload', value: 'تلقائي' },
-              { label: 'التنفيذ', value: 'معطّل' },
+              { label: 'التنفيذ', value: 'عبر الوكلاء' },
             ]}
+            status="INTELLIGENCE READY"
             onClick={() => onNavigate('market')}
           />
           <ModuleCard
             tag="MODULE · 02"
             title="مكافآت الثغرات"
             subtitle="Bug Bounty Engine v0"
-            description="محرك تخطيط آمن محلي — خرائط نطاق، فرضيات، قوائم تحقق، قوالب مسودة. لا فحص ولا استغلال فعلي."
+            description="محرك دفاعي محلي لخرائط النطاق والفرضيات والأدلة والتقارير. الفحص الحي ينتقل لطابور الموافقة قبل تشغيله."
             icon={Bug}
             stats={[
               { label: 'Quality Gate', value: 'مفعّل' },
               { label: 'Bridge Payload', value: 'تلقائي' },
-              { label: 'وضع المخرجات', value: 'مسودة' },
+              { label: 'المخرجات', value: 'تقرير وأدلة' },
             ]}
+            status="DEFENSIVE PLANNER"
             onClick={() => onNavigate('bounty')}
+          />
+          <ModuleCard
+            tag="RUNTIME · 01"
+            title="مهام الوكلاء"
+            subtitle="Local Agent Runtime"
+            description="إرسال المهام للمشغّل المحلي، متابعة heartbeat والخطوات، اعتماد الإجراءات الحساسة، وعرض إيصالات التنفيذ."
+            icon={Bot}
+            stats={[
+              { label: 'Heartbeat', value: 'مباشر' },
+              { label: 'Receipts', value: 'مفعّلة' },
+              { label: 'الحساس', value: 'موافقة' },
+            ]}
+            status="LOCAL RUNTIME ACTIVE"
+            onClick={() => onNavigate('agents')}
           />
           <ModuleCard
             tag="BRIDGE · 01"
             title="طابور الموافقة"
             subtitle="Approval Queue"
-            description="كل Payload تم توليده ينتظر هنا. عرض، تصدير JSON، أو رفض. زر التنفيذ مقفل حتى موافقة بشرية صريحة."
+            description="تظهر هنا فقط الخطوات الحساسة التي اختارتها الخطة. اعتمدها أو ألغها، ثم يكمل المشغّل التنفيذ ويصدر إيصالًا."
             icon={ListChecks}
             stats={[
-              { label: 'Payloads', value: 'محلية' },
-              { label: 'Execute', value: 'مقفل' },
-              { label: 'Export JSON', value: 'متاح' },
+              { label: 'Payloads', value: 'حساسة فقط' },
+              { label: 'اعتماد', value: 'متاح' },
+              { label: 'Receipts', value: 'إلزامية' },
             ]}
+            status="APPROVAL GATE"
             onClick={() => onNavigate('approval')}
           />
           <ModuleCard
             tag="BRIDGE · 02"
             title="مخطط n8n"
             subtitle="n8n Bridge Blueprint"
-            description="تصميم سير العمل المستقبلي — 6 عقد من الاستقبال للتنفيذ. كل العقد في وضع Mock/Disabled حالياً."
+            description="n8n يعمل محليًا كطبقة أتمتة. جسر الوكلاء مهيأ، وتفعيل workflows ينتظر إصلاح قاعدة n8n وإعداد مفتاح API."
             icon={Workflow}
             stats={[
               { label: 'عقد العمل', value: '6' },
-              { label: 'الحالة', value: 'Blueprint' },
-              { label: 'التنفيذ', value: 'معطّل' },
+              { label: 'الحالة', value: 'متصل محليًا' },
+              { label: 'Bridge', value: 'قيد التهيئة' },
             ]}
+            status="LOCAL n8n ONLINE"
             onClick={() => onNavigate('n8n')}
           />
         </div>
 
         <div className="mt-12 grid sm:grid-cols-3 gap-4">
-          <FooterChip icon={Activity} label="قراءة فقط" sub="لا إجراءات خارجية" />
-          <FooterChip icon={Lock} label="مسودات محفوظة" sub="قاعدة بيانات مؤمّنة" />
-          <FooterChip icon={ArrowLeft} label="تأكيد بشري" sub="شرط مسبق للتنفيذ" />
+          <FooterChip icon={Activity} label="تنفيذ داخلي" sub="عبر المشغّل المحلي" />
+          <FooterChip icon={Lock} label="إيصالات محفوظة" sub="قاعدة بيانات مؤمّنة" />
+          <FooterChip icon={ArrowLeft} label="تأكيد بشري" sub="للإجراءات الحساسة" />
         </div>
 
         <div className="mt-14 space-y-6">
@@ -110,7 +128,7 @@ export function Home({ onNavigate }: { onNavigate: (v: View) => void }) {
 }
 
 function ModuleCard({
-  tag, title, subtitle, description, icon: Icon, stats, onClick,
+  tag, title, subtitle, description, icon: Icon, stats, status, onClick,
 }: {
   tag: string;
   title: string;
@@ -118,6 +136,7 @@ function ModuleCard({
   description: string;
   icon: typeof LineChart;
   stats: { label: string; value: string }[];
+  status: string;
   onClick: () => void;
 }) {
   return (
@@ -158,8 +177,8 @@ function ModuleCard({
 
         <div className="flex items-center justify-between">
           <span className="text-xs font-mono text-stone-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-stone-600 inline-block ml-1.5" />
-            DRAFT ONLY
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block ml-1.5 pulse-dot" />
+            {status}
           </span>
           <span className="inline-flex items-center gap-2 text-sm font-medium text-gold-300 group-hover:gap-3 transition-all">
             دخول الوحدة
@@ -185,7 +204,7 @@ function TestModePanel({ onNavigate }: { onNavigate: (v: View) => void }) {
       </div>
       <div className="px-6 py-5">
         <p className="text-xs text-stone-400 leading-6 mb-4">
-          يُولّد بيانات اختبار آمنة ويُشغّل المحرك المحلي مباشرةً. لا إجراءات خارجية — للتحقق من سلوك المحرك فقط.
+          يُولّد بيانات اختبار ويُشغّل المسارات المحلية مباشرةً للتحقق من الفهم والخطة والأدوات والإيصالات.
         </p>
         <div className="flex flex-wrap gap-3">
           <button

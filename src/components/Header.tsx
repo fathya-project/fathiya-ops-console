@@ -1,4 +1,4 @@
-import { ChevronLeft, ListChecks, Workflow } from 'lucide-react';
+import { Bot, ChevronLeft, ListChecks, Workflow } from 'lucide-react';
 import type { View } from '../types';
 import { Logo } from './Logo';
 
@@ -34,10 +34,23 @@ export function Header({
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gold-300/70">
             <span className="w-2 h-2 bg-gold-400 rounded-full pulse-dot" />
-            <span className="hidden md:inline">ONLINE · DRAFT MODE</span>
-            <span className="md:hidden">DRAFT</span>
+            <span className="hidden md:inline">ONLINE · AGENT RUNTIME</span>
+            <span className="md:hidden">AGENT</span>
           </div>
           <span className="sm:hidden w-2 h-2 bg-gold-400 rounded-full pulse-dot" />
+
+          <button
+            onClick={() => onNavigate('agents')}
+            aria-label="Agent Runtime"
+            className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-md border transition ${
+              view === 'agents'
+                ? 'border-gold-500/50 text-gold-200 bg-gold-600/10'
+                : 'border-gold-700/30 text-gold-300/70 hover:border-gold-500/50 hover:text-gold-200'
+            }`}
+          >
+            <Bot size={13} />
+            <span className="hidden lg:inline">Agent Runtime</span>
+          </button>
 
           {/* n8n Blueprint nav */}
           <button

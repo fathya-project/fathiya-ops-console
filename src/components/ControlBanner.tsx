@@ -10,17 +10,17 @@ export function ControlBanner() {
         </div>
         <div className="h-4 w-px bg-gold-700/30 hidden sm:block" />
         <div className="flex items-center gap-2 font-mono text-xs text-gold-200/90">
-          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Read</span>
+          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Request</span>
           <span className="opacity-50">→</span>
-          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Analyze</span>
+          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Plan</span>
           <span className="opacity-50">→</span>
-          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Draft</span>
+          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Execute</span>
           <span className="opacity-50">→</span>
-          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Wait</span>
+          <span className="px-2 py-0.5 rounded bg-gold-600/10 border border-gold-600/20">Receipt</span>
         </div>
         <div className="h-4 w-px bg-gold-700/30 hidden md:block" />
         <p className="text-gold-100/80 text-xs hidden md:block">
-          No external action without explicit human command.
+          Sensitive external actions require explicit human approval.
         </p>
       </div>
     </div>

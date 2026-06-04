@@ -1,29 +1,29 @@
 import { Activity, Github, Workflow, Zap, Cpu, Bug, Server, Lock, ShieldCheck, ListChecks } from 'lucide-react';
 
-type Status = 'active' | 'mock' | 'connected-guarded' | 'disconnected' | 'draft' | 'blueprint';
+type Status = 'active' | 'local' | 'connected-guarded' | 'degraded' | 'pending';
 
 const statusStyles: Record<Status, { label: string; dot: string; text: string; bg: string }> = {
   active: { label: 'Active', dot: 'bg-gold-300', text: 'text-gold-200', bg: 'bg-gold-600/10 border-gold-600/30' },
-  mock: { label: 'Local Mock', dot: 'bg-gold-400', text: 'text-gold-300', bg: 'bg-gold-600/10 border-gold-600/20' },
+  local: { label: 'Local Active', dot: 'bg-emerald-400', text: 'text-emerald-300', bg: 'bg-emerald-500/10 border-emerald-500/20' },
   'connected-guarded': { label: 'Connected · Guarded', dot: 'bg-amber-400', text: 'text-amber-300', bg: 'bg-amber-500/10 border-amber-500/20' },
-  disconnected: { label: 'Not Connected', dot: 'bg-stone-500', text: 'text-stone-400', bg: 'bg-stone-700/20 border-stone-700/50' },
-  draft: { label: 'Draft Only', dot: 'bg-amber-400', text: 'text-amber-300', bg: 'bg-amber-500/10 border-amber-500/20' },
-  blueprint: { label: 'Blueprint Only', dot: 'bg-stone-500', text: 'text-stone-400', bg: 'bg-stone-700/20 border-stone-700/50' },
+  degraded: { label: 'Fallback Active', dot: 'bg-orange-400', text: 'text-orange-300', bg: 'bg-orange-500/10 border-orange-500/20' },
+  pending: { label: 'Setup Pending', dot: 'bg-stone-500', text: 'text-stone-400', bg: 'bg-stone-700/20 border-stone-700/50' },
 };
 
 const items: { icon: typeof Server; name: string; sub: string; status: Status }[] = [
   { icon: Server, name: 'Frontend', sub: 'واجهة المستخدم', status: 'active' },
-  { icon: Cpu, name: 'Intelligence Engine', sub: 'محرك التحليل المحلي', status: 'active' },
+  { icon: Cpu, name: 'Agent Runtime', sub: 'المشغّل المحلي متعدد الأدوات', status: 'local' },
+  { icon: Cpu, name: 'Hugging Face', sub: 'استرجاع وتوليد محلي', status: 'local' },
   { icon: ShieldCheck, name: 'Quality Gate', sub: 'بوابة التحقق', status: 'active' },
   { icon: Cpu, name: 'Understanding Gate', sub: 'فحص الفهم لا الحفظ', status: 'active' },
-  { icon: Activity, name: 'Bridge Layer', sub: 'طبقة الجسر', status: 'mock' },
+  { icon: Activity, name: 'Bridge Layer', sub: 'قناة الموقع والمشغّل', status: 'connected-guarded' },
   { icon: ListChecks, name: 'Approval Queue', sub: 'طابور الموافقة', status: 'active' },
-  { icon: Bug, name: 'Bug Bounty Engine', sub: 'محرك مكافآت الثغرات', status: 'mock' },
-  { icon: Cpu, name: 'OpenRouter Routing', sub: 'عقود نماذج متعددة', status: 'connected-guarded' },
-  { icon: Workflow, name: 'n8n', sub: 'أتمتة سير العمل', status: 'blueprint' },
+  { icon: Bug, name: 'Security Core', sub: 'النواة الدفاعية المحلية', status: 'local' },
+  { icon: Cpu, name: 'OpenRouter Routing', sub: 'المحلي يعمل عند فشل المزود', status: 'degraded' },
+  { icon: Workflow, name: 'n8n', sub: 'الخدمة محلية والجسر قيد التهيئة', status: 'pending' },
   { icon: Github, name: 'GitHub', sub: 'تكامل المستودعات', status: 'connected-guarded' },
   { icon: Zap, name: 'Zapier', sub: 'تكامل محمي', status: 'connected-guarded' },
-  { icon: Lock, name: 'Execution Mode', sub: 'وضع التنفيذ', status: 'draft' },
+  { icon: Lock, name: 'Execution Mode', sub: 'الداخلي تلقائي والحساس بموافقة', status: 'active' },
 ];
 
 export function SystemStatus() {
