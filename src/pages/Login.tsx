@@ -50,7 +50,7 @@ export function Login() {
             </div>
             <div>
               <div className="text-sm font-semibold text-stone-100">تسجيل الدخول</div>
-              <div className="font-mono text-[10px] text-gold-600/70 tracking-wider">SECURE ACCESS · DRAFT ONLY</div>
+              <div className="font-mono text-[10px] text-gold-600/70 tracking-wider">SECURE ACCESS · AGENT RUNTIME</div>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export function Login() {
         </div>
 
         <p className="text-center text-[11px] text-stone-600 mt-6">
-          فتحية لا تنفذ قرارات. فتحية توسّع الوعي وتنتج مسودات قابلة للمراجعة.
+          فتحية تنفذ العمل الداخلي عبر الوكلاء، وتطلب الموافقة فقط عندما يكون الإجراء حساسًا أو خارجيًا.
         </p>
         <PublicLearningBadge />
       </div>
